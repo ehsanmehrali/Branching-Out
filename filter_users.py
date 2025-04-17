@@ -30,17 +30,18 @@ def filter_users_by_name(users):
 def main():
     func_dict = {
         "name": filter_users_by_name,
-        "age": filter_users_by_email,
-        "emai": filter_users_by_email,
+        "age": filter_users_by_age,
+        "email": filter_users_by_email,
     }
 
     while True:
-        # try:
-        user_input = input("What would you like to filter by? 'name', 'age' and 'email' is supported): ").strip().lower()
-        users_info = load_data()
-        func_dict[user_input](users_info)
-        # except KeyError:
-        #     print("This filter does not exist!")
+        try:
+            user_input = input("What would you like to filter by? 'name', 'age' and 'email' is supported): ").strip().lower()
+            users_info = load_data()
+            func_dict[user_input](users_info)
+            break
+        except KeyError:
+            print("This filter does not exist!")
 
 
 
