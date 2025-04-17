@@ -9,7 +9,8 @@ def filter_users_by_email(users):
 
     for user in users:
         if user["email"] == email:
-            print(user)
+            for key, value in user.items():
+                print(f"{f"{key}":{'-'}<20}", f"{value}")
             return
     print("User not found!")
 
@@ -23,7 +24,8 @@ def filter_users_by_age(users):
             age = int(input("Enter an age to filter users: ").strip())
             filtered_users = [user for user in users if user["age"] == age]
             for user in filtered_users:
-                print(user)
+                for key, value in user.items():
+                    print(f"{f"{key}":{'-'}<20}", f"{value}")
             break
 
         except ValueError:
@@ -38,7 +40,8 @@ def filter_users_by_name(users):
 
     filtered_users = [user for user in users if user["name"].lower() == name.lower()]
     for user in filtered_users:
-        print(user)
+        for key, value in user.items():
+            print(f"{f"{key}":{'-'}<20}", f"{value}")
 
 
 def main():
