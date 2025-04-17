@@ -35,10 +35,12 @@ def main():
     }
 
     while True:
-        user_input = input(
-        "What would you like to filter by? 'name', 'age' and 'email' is supported): ").strip().lower()
+        # try:
+        user_input = input("What would you like to filter by? 'name', 'age' and 'email' is supported): ").strip().lower()
         users_info = load_data()
         func_dict[user_input](users_info)
+        # except KeyError:
+        #     print("This filter does not exist!")
 
 
 
