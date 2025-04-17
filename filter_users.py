@@ -1,7 +1,8 @@
 
 from load_data import load_data
 
-def filter_users_by_email(users, email):
+def filter_users_by_email(users):
+    email = input("Enter an email to filter users: ").strip()
 
     for user in users:
         if user["email"] == email:
@@ -10,42 +11,35 @@ def filter_users_by_email(users, email):
     print("User not found!")
 
 
-def filter_users_by_age(users, age):
-
+def filter_users_by_age(users):
+    age = int(input("Enter an age to filter users: ").strip())
     filtered_users = [user for user in users if user["age"] == age]
 
     for user in filtered_users:
         print(user)
 
 
-def filter_users_by_name(users, name):
+def filter_users_by_name(users):
+    name = input("Enter a name to filter users: ").strip()
 
     filtered_users = [user for user in users if user["name"].lower() == name.lower()]
-
     for user in filtered_users:
         print(user)
 
 
 def main():
-    filter_option = input(
+    func_dict = {
+        "name": filter_users_by_name,
+        "age": filter_users_by_email,
+        "emai": filter_users_by_email,
+    }
+
+    while True:
+        user_input = input(
         "What would you like to filter by? 'name', 'age' and 'email' is supported): ").strip().lower()
-    users_info = load_data()
-    if filter_option == "name":
-        name_to_search = input("Enter a name to filter users: ").strip()
-        filter_users_by_name(users_info, name_to_search)
-    elif filter_option == "age":
-        while True:
-            try:
-                age_to_search = int(input("Enter an age to filter users: ").strip())
-                filter_users_by_age(users_info, age_to_search)
-                break
-            except ValueError:
-                print("Invalid Input!")
-    elif filter_option == "email":
-        email_to_search = input("Enter an email to filter users: ").strip()
-        filter_users_by_email(users_info, email_to_search)
-    else:
-        print("Filtering by that option is not yet supported.")
+        users_info = load_data()
+        func_dict[user_input](users_info)
+
 
 
 if __name__ == "__main__":
