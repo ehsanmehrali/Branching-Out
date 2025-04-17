@@ -12,11 +12,16 @@ def filter_users_by_email(users):
 
 
 def filter_users_by_age(users):
-    age = int(input("Enter an age to filter users: ").strip())
-    filtered_users = [user for user in users if user["age"] == age]
+    while True:
+        try:
+            age = int(input("Enter an age to filter users: ").strip())
 
-    for user in filtered_users:
-        print(user)
+            filtered_users = [user for user in users if user["age"] == age]
+            for user in filtered_users:
+                print(user)
+            break
+        except ValueError:
+            print("Invalid Input!")
 
 
 def filter_users_by_name(users):
